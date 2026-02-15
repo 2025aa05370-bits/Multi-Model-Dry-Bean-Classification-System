@@ -1,59 +1,65 @@
 # Multi Model Dry Bean Classification Application
 
 ## Problem Statement
-This project aims to develop a machine learning application to automatically classify different varieties of dry beans based on their geometric and morphological features extracted using a computer vision system.  
-
-The goal is to implement and compare multiple classification models, evaluate their performance using standard metrics, and deploy the trained models into an interactive Streamlit web application for real-time predictions.
-
-This project demonstrates a complete end-to-end Machine Learning workflow including data preprocessing, model training, evaluation, and deployment.
+This project aims to develop a machine learning application to automatically classify different varieties of dry beans using geometric and morphological features extracted through a computer vision system. The goal is to implement and compare multiple machine learning classification models, evaluate their performance using standard metrics, and deploy the trained models into an interactive Streamlit web application for real-time predictions.
 
 ---
 
 ## Dataset Description
 **Dataset**: `Dry_Bean_Dataset.csv`  
-**Source**: Kaggle / UCI Machine Learning Repository  
+**Source**: Kaggle – Dry Bean Dataset by Murat Koklu  
 
-The dataset contains images of dry bean seeds captured using a high-resolution camera. A computer vision pipeline was used for segmentation and feature extraction. Each bean is represented using shape and dimensional measurements.
+This dataset contains measurements obtained from images of dry bean seeds captured using a high-resolution camera. A computer vision pipeline performs segmentation and feature extraction to compute shape-based and dimensional attributes for each bean.
 
-The task is to classify each bean into one of seven different registered varieties.
+Each row represents one bean sample and must be classified into one of seven bean varieties.
 
 ### Target Classes:
-- Seker
-- Barbunya
-- Bombay
-- Cali
-- Dermosan
-- Horoz
-- Sira
+- SEKER
+- BARBUNYA
+- BOMBAY
+- CALI
+- DERMASON
+- HOROZ
+- SIRA
 
-### Key Features:
-- `Area`: Pixel area of bean region
-- `Perimeter`: Bean boundary length
-- `MajorAxisLength`: Longest axis length
-- `MinorAxisLength`: Shortest axis length
-- `AspectRatio`: Ratio of major/minor axis
-- `Eccentricity`: Ellipse eccentricity
-- `ConvexArea`: Area of convex hull
-- `EquivDiameter`: Diameter of equal area circle
-- `Extent`: Bounding box ratio
-- `Solidity`: Convexity ratio
-- `Roundness`: (4πA / P²)
-- `Compactness`: Roundness measure
-- `ShapeFactor1`
-- `ShapeFactor2`
-- `ShapeFactor3`
-- `ShapeFactor4`
+---
 
-**Number of Features**: 16  
-**Number of Instances**: 13,611  
-**Problem Type**: Multi-class classification  
-**Missing Values**: None  
+## Dataset Features (Exact Column Names)
+
+The dataset contains the following **16 numerical features + 1 target label**:
+
+- `Area` – Pixel area of the bean region  
+- `Perimeter` – Boundary length of the bean  
+- `MajorAxisLength` – Longest axis of the bean  
+- `MinorAxisLength` – Shortest axis of the bean  
+- `AspectRation` – Ratio of major/minor axis length  
+- `Eccentricity` – Ellipse eccentricity of the bean  
+- `ConvexArea` – Area of the convex hull  
+- `EquivDiameter` – Diameter of circle with equal area  
+- `Extent` – Bounding box ratio  
+- `Solidity` – Convexity ratio  
+- `roundness` – Roundness measure (4πA / P²)  
+- `Compactness` – Compactness of the bean  
+- `ShapeFactor1`  
+- `ShapeFactor2`  
+- `ShapeFactor3`  
+- `ShapeFactor4`  
+- `Class` – Target label (bean type)
+
+---
+
+## Dataset Statistics
+- **Number of Features**: 16  
+- **Target Column**: Class  
+- **Number of Instances**: 13,611  
+- **Problem Type**: Multi-class classification  
+- **Missing Values**: None  
 
 ---
 
 ## Models Used and Evaluation Metrics
 
-Six different classification models were implemented and evaluated on the same dataset.  
+Six different classification models were trained and compared.
 
 ### Models:
 1. Logistic Regression
@@ -88,27 +94,27 @@ Six different classification models were implemented and evaluated on the same d
 
 ## Observations on Model Performance
 
-| ML Model Name | Observation about model performance |
-|-----------|------------------------------------|
-| Logistic Regression | Performs strongly due to good linear separability of features |
-| Decision Tree | Simple and interpretable but prone to overfitting |
-| kNN | Good accuracy but slower prediction for larger datasets |
-| Naive Bayes | Fast but assumes feature independence, reducing performance |
-| Random Forest (Ensemble) | More stable and accurate due to ensemble averaging |
-| XGBoost (Ensemble) | Best overall performance with highest accuracy, AUC and MCC |
+- **Logistic Regression** performs well due to good feature separability  
+- **Decision Tree** is interpretable but prone to overfitting  
+- **kNN** provides strong accuracy but slower predictions  
+- **Naive Bayes** is fast but assumes feature independence  
+- **Random Forest (Ensemble)** improves stability using ensemble averaging  
+- **XGBoost (Ensemble)** achieves the best overall performance across most metrics  
 
-Overall, **XGBoost and Random Forest achieved the best results**, showing that ensemble learning methods work effectively for this multi-class classification problem.
+Overall, **XGBoost and Random Forest achieved the highest accuracy and robustness** for this dataset.
 
 ---
 
 ## Streamlit Web Application Features
-The deployed web application includes:
-- CSV dataset upload option
+
+The deployed web application provides:
+
+- Upload test CSV file
 - Model selection dropdown
-- Evaluation metrics display
 - Classification report
 - Confusion matrix visualization
-- Model comparison table
+- Performance metrics table
+- Comparison of all trained models
 
 ---
 
@@ -123,39 +129,38 @@ project-folder/
 │     ├── scaler.pkl
 │     ├── label_encoder.pkl
 │     └── metrics.csv
-│-- models/
-│     └── train_models.py
+│-- model/train_models.py
 ```
 
 ---
 
 ## How to Run Locally
 
-1. Clone the repository:
+1. Clone the repository
 ```bash
 git clone https://github.com/2025aa05370-bits/Multi-Model-Dry-Bean-Classification-System
 cd Multi-Model-Dry-Bean-Classification-System
 ```
 
-2. Create a virtual environment (optional):
+2. Create virtual environment (optional)
 ```bash
 python -m venv myenv
 myenv\Scripts\activate
 ```
 
-3. Install dependencies:
+3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Train models:
+4. Train models
 ```bash
 python model/train_models.py
 ```
 
-5. Run the Streamlit application:
+5. Run Streamlit app
 ```bash
 streamlit run app.py
 ```
 
-The application will open in your default web browser.
+The application will open in your default browser.
