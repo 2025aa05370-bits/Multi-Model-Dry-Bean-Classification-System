@@ -94,12 +94,14 @@ Six different classification models were trained and compared.
 
 ## Observations on Model Performance
 
-- **Logistic Regression** performs well due to good feature separability  
-- **Decision Tree** is interpretable but prone to overfitting  
-- **kNN** provides strong accuracy but slower predictions  
-- **Naive Bayes** is fast but assumes feature independence  
-- **Random Forest (Ensemble)** improves stability using ensemble averaging  
-- **XGBoost (Ensemble)** achieves the best overall performance across most metrics  
+| ML Model Name | Observation about model performance |
+|---------------|------------------------------------|
+| Logistic Regression | Performs well due to good linear separability of features and provides stable baseline results |
+| Decision Tree | Simple and interpretable but prone to overfitting, leading to slightly lower generalization accuracy |
+| kNN | Provides strong accuracy by using neighborhood similarity but prediction becomes slower for larger datasets |
+| Naive Bayes | Very fast and lightweight but assumes feature independence which slightly reduces performance |
+| Random Forest (Ensemble) | More stable and accurate due to ensemble averaging and reduced overfitting compared to a single tree |
+| XGBoost (Ensemble) | Achieves the best overall performance with highest accuracy, AUC, and MCC due to gradient boosting optimization |  
 
 Overall, **XGBoost and Random Forest achieved the highest accuracy and robustness** for this dataset.
 
